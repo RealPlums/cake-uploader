@@ -166,7 +166,7 @@ class FileValidationBehavior extends ModelBehavior {
 	 */
 	public function extension($model, $data, array $allowed = array()) {
 		foreach ($data as $fieldName => $field) {
-			if (!$this->_settings[$model->alias][$fieldName]['required'] && empty($field['tmp_name'])) {
+			if (!$this->_settings[$model->alias][$fieldName]['required'] && (empty($field['tmp_name']) || !is_array($field))) {
 				return true;
 				
 			} else if (empty($field['tmp_name'])) {
